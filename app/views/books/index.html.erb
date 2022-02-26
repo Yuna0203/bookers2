@@ -1,10 +1,19 @@
 <p id="notice"></p>
 <div class="container px-5 px-sm-0">
+
+  <% if @book.errors.any? %>
+    <h3 class="text-danger"><%= @book.errors.count %> errors prohibited this obj from being saved:</h3>
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li class="text-danger"><%= message %></li>
+      <% end %>
+  </ul>
+  <% end %>
+
   <div class="row">
 
     <div class="col-md-3">
-      <%# テンプレート %>
-      <%#<%= render 'users/info', user: @user, book: @book %>
+      <%= render 'users/info', user: @user, book: @book %>
     </div>
 
     <div class="col-md-8 offset-md-1">
@@ -21,11 +30,11 @@
           </tr>
         </thead>
 
-        <%= @books.each do |book| %>
+        <% @books.each do |book| %>
           <tbody>
             <td>
               <%= link_to user_path(book.user.id) do %>
-                <%= image_tag book.user.get_userimage(40,48.5) %>
+                <%= image_tag book.user.get_profile_image(40,48.5) %>
               <% end %>
               </td>
             <td><%= link_to book.title, book_path(book.id) %></td>

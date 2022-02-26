@@ -1,9 +1,10 @@
 <p id="notice"></p>
 <div class="container">
+
   <div class="row">
 
     <div class="col-md-3">
-      <%# テンプレート %>
+      <%= render 'users/info', user: @user, book: @booknew %>
     </div>
 
     <div class="col-md-8 offset-md-1">
@@ -12,7 +13,7 @@
         <tr>
           <td>
             <%= link_to user_path(@book.user.id) do %>
-              <%= image_tag @book.user.get_userimage(40,48.5) %><br>
+              <%= image_tag @book.user.get_profile_image(40,48.5) %><br>
               <%= @book.user.name %>
             <% end %>
           </td>
